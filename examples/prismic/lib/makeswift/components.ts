@@ -1,0 +1,6 @@
+import '@/components/Accordions/Accordions.makeswift'
+import '@/components/Embedded/Blog/Blog.makeswift'
+import '@/components/Marquee/Marquee.makeswift'
+import '@/components/Prismic/BlogFeed/BlogFeed.makeswift'
+import '@/components/Prismic/BlogRichText/BlogRichText.makeswift'
+import '@/components/Tabs/Tabs.makeswift'

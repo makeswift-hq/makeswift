@@ -1,0 +1,39 @@
+fragment BlogFeedInfo on Blog_postConnectionConnection {
+  totalCount
+  pageInfo {
+    hasNextPage
+    hasPreviousPage
+  }
+  edges {
+    cursor
+    node {
+      title
+      date
+      hero_image
+      thumbnail_image
+      summary
+      categories {
+        category {
+          ... on Category {
+            name
+            _meta {
+              id
+            }
+          }
+        }
+      }
+      _meta {
+        uid
+        tags
+        id
+        lastPublicationDate
+      }
+    }
+  }
+}
+
+query BlogFeed($first: Int, $after: String, $sortBy: SortBlog_posty, $where: WhereBlog_post) {
+  allBlog_posts(first: $first, after: $after, sortBy: $sortBy, where: $where) {
+    ...BlogFeedInfo
+  }
+}

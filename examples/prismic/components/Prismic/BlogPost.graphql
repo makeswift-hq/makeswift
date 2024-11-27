@@ -1,0 +1,78 @@
+fragment BlogPostInfo on Blog_post {
+  title
+  date
+  author {
+    ... on Person {
+      first_name
+      last_name
+      position
+      headshot
+      _meta {
+        id
+        uid
+      }
+    }
+  }
+  summary
+  hero_image
+  thumbnail_image
+  summary
+  categories {
+    category {
+      ... on Category {
+        name
+      }
+    }
+  }
+  seo_title
+  seo_description
+  categories {
+    category {
+      ... on Category {
+        name
+        _meta {
+          id
+          uid
+        }
+      }
+    }
+  }
+  body {
+    ... on Blog_postBodyRich_text {
+      primary {
+        body
+      }
+    }
+  }
+  _meta {
+    uid
+    tags
+    id
+    firstPublicationDate
+    lastPublicationDate
+  }
+  related_links {
+    related_link_label
+    related_link {
+      __typename
+      ... on _ExternalLink {
+        url
+      }
+      ... on Blog_post {
+        title
+        thumbnail_image
+        summary
+        _meta {
+          uid
+          id
+        }
+      }
+    }
+  }
+}
+
+query BlogPost($slug: String!, $lang: String!) {
+  blog_post(uid: $slug, lang: $lang) {
+    ...BlogPostInfo
+  }
+}
